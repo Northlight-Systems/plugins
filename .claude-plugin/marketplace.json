@@ -1,0 +1,14 @@
+{
+  "name": "northlight-systems",
+  "description": "Plugins from Northlight Systems for Claude Code",
+  "owner": {
+    "name": "Northlight Systems"
+  },
+  "plugins": [
+    {
+      "name": "northlight",
+      "source": "./plugins/northlight",
+      "description": "Build apps on Northlight: sign-in, runs on the person's runtime, providers, texting with Comms."
+    }
+  ]
+}

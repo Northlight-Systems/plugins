@@ -1,0 +1,10 @@
+{
+  "name": "northlight",
+  "version": "0.3.543",
+  "description": "Build apps on Northlight with @north-light/sdk: sign-in, runs on the person's runtime, providers, texting with Comms.",
+  "author": {
+    "name": "Northlight Systems"
+  },
+  "homepage": "https://sdk.docs.northlight.ai",
+  "repository": "https://github.com/Northlight-Systems/plugins"
+}
