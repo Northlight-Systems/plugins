@@ -2,7 +2,7 @@
 
 The Northlight plugin for [Claude Code](https://code.claude.com): skills that teach Claude how to build apps on Northlight with [`@north-light/sdk`](https://www.npmjs.com/package/@north-light/sdk), and commands for the common jobs. Docs: https://sdk.docs.northlight.ai.
 
-This repository is generated from the [crouter](https://github.com/Northlight-Systems/crouter) repository's docs and skill each time a release goes out. Do not edit it by hand: changes are overwritten. To change something, change the docs in crouter. The current content is for SDK version 0.3.545.
+This repository is generated from the [crouter](https://github.com/Northlight-Systems/crouter) repository's docs and skill each time a release goes out. Do not edit it by hand: changes are overwritten. To change something, change the docs in crouter. The current content is for SDK version 0.3.547.
 
 ## Install
 
