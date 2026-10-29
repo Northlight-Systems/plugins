@@ -2,7 +2,7 @@
 name: know-the-person
 description: "Learn who the person is and what they care about from their first sign-in, with the context provider and their public documents."
 metadata:
-  sdk-version: "0.3.553"
+  sdk-version: "0.3.554"
 ---
 
 This skill covers one part of building a Northlight app. Account, login and registration are in the `northlight` skill; read it first if the project has no registered app yet.
