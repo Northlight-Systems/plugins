@@ -2,7 +2,7 @@
 name: get-started
 description: "What every Northlight app needs first — an account, a registered app, sign-in with Northlight, a stored connection per person, scopes, and testing mode — and where each is covered."
 metadata:
-  sdk-version: "0.3.552"
+  sdk-version: "0.3.553"
 ---
 
 This skill covers one part of building a Northlight app. Account, login and registration are in the `northlight` skill; read it first if the project has no registered app yet.
