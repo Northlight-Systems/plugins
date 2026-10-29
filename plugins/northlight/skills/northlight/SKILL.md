@@ -2,16 +2,32 @@
 name: northlight
 description: "Use when building, debugging or shipping an app that signs people in with Northlight, starts runs on their Northlight runtime, or calls Northlight providers (sms, search, integrations, context, device) with @north-light/sdk."
 metadata:
-  sdk-version: "0.3.543"
+  sdk-version: "0.3.544"
 ---
 
 # Building a Northlight app
 
-An app on Northlight signs people in with their Northlight account, then starts agent runs and calls providers (sms, search, integrations, context, device) on that person's own Northlight-hosted runtime, using their AI subscription. You write and host the app server with `@north-light/sdk`. Northlight hosts the directory (accounts, app registration, consent, the marketplace) and each person's runtime. It does not host your app's code. See [Where your app runs](https://sdk.docs.northlight.ai/docs/how-it-fits.md).
+An app on Northlight signs people in with their Northlight account, then starts agent runs and calls providers (sms, search, integrations, context, device) on that person's own Northlight-hosted runtime, using their AI subscription. You write and host the app server with [`@north-light/sdk`](https://www.npmjs.com/package/@north-light/sdk). Northlight hosts the directory (accounts, app registration, consent, the marketplace) and each person's runtime. It does not host your app's code. See [Where your app runs](https://sdk.docs.northlight.ai/docs/how-it-fits.md).
+
+## If the person gave you an idea: build it as an app people text
+
+The default Northlight app is one people text. It gets its own iMessage number through Comms; each text reaches your server as a webhook, and your server answers with an agent run on the texter's own runtime. If the person gave you an idea, build it this way. If they gave you none, ask them what the app should do before you start.
+
+[comms.northlight.ai/llms.txt](https://comms.northlight.ai/llms.txt) is the whole Comms guide: read it and follow it rather than this summary. [Reach people by text](https://sdk.docs.northlight.ai/docs/reach-people-by-text.md) shows the webhook handler.
+
+1. **Build in fake mode.** `npx @north-light/sdk@latest init <dir>`, then `npm i @north-light/comms --legacy-peer-deps` (its 0.3.0 release pins an older `@north-light/sdk` as an optional peer). Run `npx @north-light/comms fake --webhook http://localhost:3000/hook`, and play a person with `npx @north-light/comms fake send --from +15550001 --text "hi"`. No account is needed yet.
+2. **Sign up, log in, register.** Steps 1 to 4 of the journey below. Comms signs in with the same app key.
+3. **Connect the app to Comms.** Ask the person to sign in at `https://comms.northlight.ai` and choose **Connect an app**; an admin of the app approves it there. This is done in a browser only.
+4. **Turn Texting on**, on the app's page there or with `crtr comms turn-on`: display name, square avatar, HELP text, test webhook URL. Copy the test signing secret it shows into the server's environment.
+5. **Answer with an agent run.** On `message.received`, get the person's runtime with `oauth.client(contact.user.id)` and pass it to `continueInRuntime` from `@north-light/comms`. When that throws `not_connected`, call `sendSignInLink(comms, contact, {environment: event.environment})` so the person signs in to your app.
+6. **Text it from the person's phone, in test mode.** Test mode is free. Add them as a tester (`crtr comms testers add --app-id <id> --phone <number> --label <name>`, or on the site) and ask them to text `JOIN <code>` to the test number; the Comms guide has the tester limit.
+7. **Production is paid.** When they want the app's own number and anyone to text it, they add a card on the billing account at `https://comms.northlight.ai`. Do not promise a free production number.
+
+Never text a person first: Comms refuses a send to anyone who has not texted your number (`403 not_texted_first`). The rest of this skill is the Northlight side: sign-in, runs and providers.
 
 ## First: check this skill matches the SDK
 
-This skill is for SDK version `0.3.543`. If the project has `node_modules/@north-light/sdk/package.json`, compare its `version` with that number. If they differ, run `npx @north-light/sdk skill` in the project, then read the rewritten `.agents/skills/northlight/SKILL.md` (or `.claude/skills/northlight/SKILL.md`) instead of this copy. That command needs no account and no crtr. A project that has no SDK yet starts with `npx @north-light/sdk@latest init <dir>`.
+This skill is for SDK version `0.3.544`. If the project has `node_modules/@north-light/sdk/package.json`, compare its `version` with that number. If they differ, run `npx @north-light/sdk skill` in the project, then read the rewritten `.agents/skills/northlight/SKILL.md` (or `.claude/skills/northlight/SKILL.md`) instead of this copy. It needs no account. A project that has no SDK yet starts with `npx @north-light/sdk@latest init <dir>`.
 
 ## Where things run
 
@@ -164,7 +180,7 @@ Details behind each rule: [Errors](https://sdk.docs.northlight.ai/docs/errors.md
 
 ## The CLI
 
-`npx @north-light/sdk <command>`. None needs crtr unless noted.
+`npx @north-light/sdk <command>`. The last column says which commands also use `crtr`, the [`@north-light/cli`](https://www.npmjs.com/package/@north-light/cli) runtime, when it is joined to your account.
 
 | Command | Effect | Needs crtr |
 |---|---|---|
@@ -180,28 +196,46 @@ Details behind each rule: [Errors](https://sdk.docs.northlight.ai/docs/errors.md
 
 ## Pages
 
-Read a page as markdown by adding `.md` to its URL. The whole site as one file: https://sdk.docs.northlight.ai/llms-full.txt.
+Read a page as markdown by adding `.md` to its URL. The whole site as one file: https://sdk.docs.northlight.ai/llms-full.txt. The site is organised by what the app does; each section's first page shows one snippet and lists its guides:
 
+- [Get started](https://sdk.docs.northlight.ai/docs/get-started.md): account, registration, sign-in, connections, scopes, testing mode.
+- [Let your app use our AI](https://sdk.docs.northlight.ai/docs/use-our-ai.md): runs on the person's runtime, typed results, streaming, background runs.
+- [Let your app use our apps](https://sdk.docs.northlight.ai/docs/use-our-apps.md): providers (sms, search, integrations, context, device).
+- [Let your app know the person](https://sdk.docs.northlight.ai/docs/know-the-person.md): the context provider and their public documents.
+- [Reach people by text](https://sdk.docs.northlight.ai/docs/reach-people-by-text.md): your app's own number with Comms.
+- [Let the person's AI use your app](https://sdk.docs.northlight.ai/docs/let-their-ai-use-your-app.md): offer tools with [`@north-light/plugin`](https://www.npmjs.com/package/@north-light/plugin).
+- [Let other apps build on yours](https://sdk.docs.northlight.ai/docs/build-on-your-app.md): offer a service and list it with a docs link.
+
+Every page:
+
+- [Get started](https://sdk.docs.northlight.ai/docs/get-started.md)
 - [Quick setup](https://sdk.docs.northlight.ai/docs/quickstart.md)
 - [Use your coding agent](https://sdk.docs.northlight.ai/docs/coding-agents.md)
 - [Where your app runs](https://sdk.docs.northlight.ai/docs/how-it-fits.md)
 - [Apps and sign-in](https://sdk.docs.northlight.ai/docs/concepts/apps-and-sign-in.md)
 - [Scopes and grants](https://sdk.docs.northlight.ai/docs/concepts/scopes-and-grants.md)
 - [Connections](https://sdk.docs.northlight.ai/docs/concepts/connections.md)
-- [Runs](https://sdk.docs.northlight.ai/docs/concepts/runs.md)
 - [Testing mode](https://sdk.docs.northlight.ai/docs/concepts/testing-mode.md)
-- [Providers](https://sdk.docs.northlight.ai/docs/concepts/providers.md)
-- [Typed results](https://sdk.docs.northlight.ai/docs/guides/typed-results.md)
-- [Stream a run](https://sdk.docs.northlight.ai/docs/guides/stream-a-run.md)
-- [Background runs](https://sdk.docs.northlight.ai/docs/guides/background-runs.md)
-- [Many users](https://sdk.docs.northlight.ai/docs/guides/many-users.md)
-- [Grant changes](https://sdk.docs.northlight.ai/docs/guides/grant-changes.md)
-- [Files and documents](https://sdk.docs.northlight.ai/docs/guides/files-and-documents.md)
 - [Test your app](https://sdk.docs.northlight.ai/docs/guides/test-your-app.md)
 - [Manage your app](https://sdk.docs.northlight.ai/docs/guides/manage-your-app.md)
 - [Go live](https://sdk.docs.northlight.ai/docs/guides/go-live.md)
+- [Let your app use our AI](https://sdk.docs.northlight.ai/docs/use-our-ai.md)
+- [Runs](https://sdk.docs.northlight.ai/docs/concepts/runs.md)
+- [Typed results](https://sdk.docs.northlight.ai/docs/guides/typed-results.md)
+- [Stream a run](https://sdk.docs.northlight.ai/docs/guides/stream-a-run.md)
+- [Background runs](https://sdk.docs.northlight.ai/docs/guides/background-runs.md)
+- [Files and documents](https://sdk.docs.northlight.ai/docs/guides/files-and-documents.md)
+- [Many users](https://sdk.docs.northlight.ai/docs/guides/many-users.md)
+- [Let your app use our apps](https://sdk.docs.northlight.ai/docs/use-our-apps.md)
+- [Providers](https://sdk.docs.northlight.ai/docs/concepts/providers.md)
 - [Providers index](https://sdk.docs.northlight.ai/docs/providers.md)
 - [Texting (sms)](https://sdk.docs.northlight.ai/docs/providers/sms.md)
+- [Grant changes](https://sdk.docs.northlight.ai/docs/guides/grant-changes.md)
+- [Let your app know the person](https://sdk.docs.northlight.ai/docs/know-the-person.md)
+- [Context](https://sdk.docs.northlight.ai/docs/providers/context.md)
+- [Reach people by text](https://sdk.docs.northlight.ai/docs/reach-people-by-text.md)
+- [Let the person's AI use your app](https://sdk.docs.northlight.ai/docs/let-their-ai-use-your-app.md)
+- [Let other apps build on yours](https://sdk.docs.northlight.ai/docs/build-on-your-app.md)
 - [Errors](https://sdk.docs.northlight.ai/docs/errors.md)
 - [CLI reference](https://sdk.docs.northlight.ai/docs/cli.md)
 - [Release notes](https://sdk.docs.northlight.ai/docs/release-notes.md)

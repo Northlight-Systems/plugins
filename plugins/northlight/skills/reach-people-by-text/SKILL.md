@@ -2,7 +2,7 @@
 name: reach-people-by-text
 description: "Give your app its own iMessage number with Comms. People text it, your server answers with an agent run on their runtime, and you can text them again later."
 metadata:
-  sdk-version: "0.3.543"
+  sdk-version: "0.3.544"
 ---
 
 This skill covers one part of building a Northlight app. Account, login and registration are in the `northlight` skill; read it first if the project has no registered app yet.
