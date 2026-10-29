@@ -2,7 +2,7 @@
 name: use-our-apps
 description: "Call Northlight's providers from your app on the person's runtime — texting their phone, web search, their connected accounts, their Mac — with providers.tools and providers.call."
 metadata:
-  sdk-version: "0.3.544"
+  sdk-version: "0.3.545"
 ---
 
 This skill covers one part of building a Northlight app. Account, login and registration are in the `northlight` skill; read it first if the project has no registered app yet.

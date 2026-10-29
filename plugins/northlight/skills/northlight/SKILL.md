@@ -2,7 +2,7 @@
 name: northlight
 description: "Use when building, debugging or shipping an app that signs people in with Northlight, starts runs on their Northlight runtime, or calls Northlight providers (sms, search, integrations, context, device) with @north-light/sdk."
 metadata:
-  sdk-version: "0.3.544"
+  sdk-version: "0.3.545"
 ---
 
 # Building a Northlight app
@@ -15,7 +15,7 @@ The default Northlight app is one people text. It gets its own iMessage number t
 
 [comms.northlight.ai/llms.txt](https://comms.northlight.ai/llms.txt) is the whole Comms guide: read it and follow it rather than this summary. [Reach people by text](https://sdk.docs.northlight.ai/docs/reach-people-by-text.md) shows the webhook handler.
 
-1. **Build in fake mode.** `npx @north-light/sdk@latest init <dir>`, then `npm i @north-light/comms --legacy-peer-deps` (its 0.3.0 release pins an older `@north-light/sdk` as an optional peer). Run `npx @north-light/comms fake --webhook http://localhost:3000/hook`, and play a person with `npx @north-light/comms fake send --from +15550001 --text "hi"`. No account is needed yet.
+1. **Build in fake mode.** `npx @north-light/sdk@latest init <dir>`, then `npm i @north-light/comms`. Run `npx @north-light/comms fake --webhook http://localhost:3000/hook`, and play a person with `npx @north-light/comms fake send --from +15550001 --text "hi"`. No account is needed yet.
 2. **Sign up, log in, register.** Steps 1 to 4 of the journey below. Comms signs in with the same app key.
 3. **Connect the app to Comms.** Ask the person to sign in at `https://comms.northlight.ai` and choose **Connect an app**; an admin of the app approves it there. This is done in a browser only.
 4. **Turn Texting on**, on the app's page there or with `crtr comms turn-on`: display name, square avatar, HELP text, test webhook URL. Copy the test signing secret it shows into the server's environment.
@@ -27,7 +27,7 @@ Never text a person first: Comms refuses a send to anyone who has not texted you
 
 ## First: check this skill matches the SDK
 
-This skill is for SDK version `0.3.544`. If the project has `node_modules/@north-light/sdk/package.json`, compare its `version` with that number. If they differ, run `npx @north-light/sdk skill` in the project, then read the rewritten `.agents/skills/northlight/SKILL.md` (or `.claude/skills/northlight/SKILL.md`) instead of this copy. It needs no account. A project that has no SDK yet starts with `npx @north-light/sdk@latest init <dir>`.
+This skill is for SDK version `0.3.545`. If the project has `node_modules/@north-light/sdk/package.json`, compare its `version` with that number. If they differ, run `npx @north-light/sdk skill` in the project, then read the rewritten `.agents/skills/northlight/SKILL.md` (or `.claude/skills/northlight/SKILL.md`) instead of this copy. It needs no account. A project that has no SDK yet starts with `npx @north-light/sdk@latest init <dir>`.
 
 ## Where things run
 
