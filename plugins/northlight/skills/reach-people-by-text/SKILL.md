@@ -41,7 +41,7 @@ The [Comms guide for coding agents](https://comms.northlight.ai/llms.txt) is the
 5. **Text it from your own phone, in test mode.** Add yourself as a tester (`crtr comms testers add --app-id <id> --phone <number> --label <name>`, or the site), then text `JOIN <code>` to the test number. Test mode is free; the [Comms guide](https://comms.northlight.ai/llms.txt) has the tester limit.
 6. **Go to production** when you want your app's own number and anyone to text it. Production is paid: add a card on the billing account, and Comms gets your app its own number.
 
-Comms is priced per person your app texts with in production each month; fake mode and testing are free. The SDK is [`@north-light/comms`](https://www.npmjs.com/package/@north-light/comms) on npm. Its 0.3.0 release declares `@north-light/sdk` 0.3.457 as an exact optional peer, so in a project pinned to a newer SDK install it with `npm i @north-light/comms --legacy-peer-deps`.
+Comms is priced per person your app texts with in production each month; fake mode and testing are free. The SDK is [`@north-light/comms`](https://www.npmjs.com/package/@north-light/comms) on npm. Install it with `npm i @north-light/comms`.
 
 ## Rules
 
