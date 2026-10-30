@@ -2,7 +2,7 @@
 name: let-their-ai-use-your-app
 description: "Make your app a provider so its tools show up in the person's chat and terminal agents. Define commands with @north-light/plugin, serve them over HTTP, and add the provider role in the console."
 metadata:
-  sdk-version: "0.3.558"
+  sdk-version: "0.3.559"
 ---
 
 This skill covers one part of building a Northlight app. Account, login and registration are in the `northlight` skill; read it first if the project has no registered app yet.
