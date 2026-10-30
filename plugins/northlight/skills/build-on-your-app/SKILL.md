@@ -2,7 +2,7 @@
 name: build-on-your-app
 description: "Offer your app as a service other Northlight apps build on — as a provider their runs call, or as your own API — and list it with a docs link so their coding agents find it."
 metadata:
-  sdk-version: "0.3.556"
+  sdk-version: "0.3.557"
 ---
 
 This skill covers one part of building a Northlight app. Account, login and registration are in the `northlight` skill; read it first if the project has no registered app yet.
