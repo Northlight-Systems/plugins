@@ -2,7 +2,7 @@
 name: northlight
 description: "Use when building, debugging or shipping an app that signs people in with Northlight, starts runs on their Northlight runtime, or calls Northlight providers (sms, search, integrations, context, device) with @north-light/sdk."
 metadata:
-  sdk-version: "0.3.559"
+  sdk-version: "0.3.560"
 ---
 
 # Building a Northlight app
@@ -27,7 +27,7 @@ Never text a person first: Comms refuses a send to anyone who has not texted you
 
 ## First: check this skill matches the SDK
 
-This skill is for SDK version `0.3.559`. If the project has `node_modules/@north-light/sdk/package.json`, compare its `version` with that number. If they differ, run `npx @north-light/sdk skill` in the project, then read the rewritten `.agents/skills/northlight/SKILL.md` (or `.claude/skills/northlight/SKILL.md`) instead of this copy. It needs no account. A project that has no SDK yet starts with `npx @north-light/sdk@latest init <dir>`.
+This skill is for SDK version `0.3.560`. If the project has `node_modules/@north-light/sdk/package.json`, compare its `version` with that number. If they differ, run `npx @north-light/sdk skill` in the project, then read the rewritten `.agents/skills/northlight/SKILL.md` (or `.claude/skills/northlight/SKILL.md`) instead of this copy. It needs no account. A project that has no SDK yet starts with `npx @north-light/sdk@latest init <dir>`.
 
 ## Where things run
 

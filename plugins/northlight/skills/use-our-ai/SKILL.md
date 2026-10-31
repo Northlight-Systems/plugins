@@ -2,7 +2,7 @@
 name: use-our-ai
 description: "Start agent runs on each person's own Northlight runtime, with their memory, files and tools, paid by their AI subscription. Typed results, streaming, background runs and documents."
 metadata:
-  sdk-version: "0.3.559"
+  sdk-version: "0.3.560"
 ---
 
 This skill covers one part of building a Northlight app. Account, login and registration are in the `northlight` skill; read it first if the project has no registered app yet.
