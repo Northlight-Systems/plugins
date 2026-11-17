@@ -1,6 +1,6 @@
 {
   "name": "northlight",
-  "version": "0.3.717",
+  "version": "0.3.718",
   "description": "Build apps on Northlight with @north-light/sdk: sign-in, runs on the person's runtime, providers, texting with Comms.",
   "author": {
     "name": "Northlight Systems"
