@@ -46,12 +46,12 @@ Then pick what your app does from the sections in the sidebar: [use our AI](http
 
 ## Run `crtr cloud apps` yourself
 
-Everything on this site works with the SDK's own commands and the web console. If you also run crouter, the agent runtime Northlight is built on, you can join your machine to your Northlight account and manage your apps with `crtr cloud apps`, or let your own crouter agents build and manage them.
+Everything on this site works with the SDK's own commands and the web console. If you also run crouter, the agent runtime Northlight is built on, you can sign your machine in to your Northlight account and manage your apps with `crtr cloud apps`, or let your own crouter agents build and manage them.
 
 ```bash
-npm install -g @north-light/cli
-crtr sys join --directory https://account.northlight.ai --token <token>
+npm i -g @north-light/cli@latest
+crtr sys signin
 crtr cloud apps mine
 ```
 
-The token comes from **Create join token** at `https://account.northlight.ai/account/machines`. The full steps, and what joining changes on your machine, are in [Join a machine to your Northlight account](https://crouter.docs.northlight.ai/docs/cli/join-northlight). The CLI is [`@north-light/cli`](https://www.npmjs.com/package/@north-light/cli) on npm, and crouter's own docs are at [crouter.docs.northlight.ai](https://crouter.docs.northlight.ai).
+`crtr sys signin` asks you to approve once in your browser. The full steps, and what signing in changes on your machine, are in [Sign in a machine to your Northlight account](https://crouter.docs.northlight.ai/docs/cli/join-northlight). The CLI is [`@north-light/cli`](https://www.npmjs.com/package/@north-light/cli) on npm, and crouter's own docs are at [crouter.docs.northlight.ai](https://crouter.docs.northlight.ai).
