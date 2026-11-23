@@ -57,11 +57,8 @@ A group's `who` says who may be granted it: `own` (only your own app), `user` (t
 
 ## Guides
 
-These live on the crouter docs site, because the same package also adds commands to a self-run crouter:
+The plugin kit `@north-light/plugin` adds commands to the Northlight runtime.
 
 | Page | What it covers |
 |---|---|
-| [Plugin docs](https://crouter.docs.northlight.ai/docs/plugin) | What `@north-light/plugin` does and how a plugin is installed |
-| [Commands](https://crouter.docs.northlight.ai/docs/plugin/commands) | Branches, leaves, parameters, outputs, groups and `who` |
-| [Deploying](https://crouter.docs.northlight.ai/docs/plugin/deploying) | `auth: {issuer, audience, providerId}`, `ctx.caller`, versions and breaking changes |
 | [Manage your app](https://sdk.docs.northlight.ai/docs/guides/manage-your-app.md) | The console's **Provider** tab beside the others |
