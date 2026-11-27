@@ -1,6 +1,6 @@
 ---
 name: build-on-your-app
-description: "Offer your app as a service other Northlight apps build on — as a provider their runs call, or as your own API — and list it with a docs link so their coding agents find it."
+description: "Offer your app as a service other Northlight apps build on — as a provider their runs call, or as your own API."
 metadata:
   sdk-version: "0.3.850"
 ---
@@ -9,7 +9,7 @@ This skill covers one part of building a Northlight app. Account, login and regi
 
 # Let other apps build on yours
 
-Other developers' apps can build on yours the way they build on Northlight's: by calling your provider tools from a run, or by calling your own API. Set a docs link on your app and it is listed on [Services you can build on](https://sdk.docs.northlight.ai/docs/services.md), where their coding agents look.
+Other developers' apps can build on yours the way they build on Northlight's: by calling your provider tools from a run, or by calling your own API.
 
 Comms is built this way. Another app calls it with its own Northlight app key, and reads [comms.northlight.ai/llms.txt](https://comms.northlight.ai/llms.txt) to learn how:
 
@@ -30,19 +30,14 @@ const comms = new CommsClient({
 - **As a provider.** Your tools run on the person's runtime for any app the person has granted them, and you can charge per call. This is the same work as [letting the person's AI use your app](https://sdk.docs.northlight.ai/docs/let-their-ai-use-your-app.md); other apps ask for your groups as scopes named `<your client id>:<group>`.
 - **As your own API.** Serve HTTP from your own host, as Comms does. A calling app identifies itself with its Northlight client id and key, so you know which app is asking.
 
-## Get listed
+## Write a guide for coding agents
 
-1. In the console, open your app's **Profile** tab.
-2. Under **Marketplace**, set **Docs link** to the https URL of your guide for agents and developers, for example `https://yourapp.com/llms.txt`, and choose **Save docs link**.
-3. Write that guide for a coding agent: what your service does, how to install the client, one working snippet, the errors and their fixes. [comms.northlight.ai/llms.txt](https://comms.northlight.ai/llms.txt) is a working example.
-
-[Services you can build on](https://sdk.docs.northlight.ai/docs/services.md) is rebuilt from the directory's public marketplace list each time this site is built, so a new docs link appears with no change to these docs.
+Publish a guide at a stable URL, for example `https://yourapp.com/llms.txt`, written for a coding agent: what your service does, how to install the client, one working snippet, the errors and their fixes. [comms.northlight.ai/llms.txt](https://comms.northlight.ai/llms.txt) is a working example.
 
 ## Guides
 
 | Page | What it covers |
 |---|---|
 | [Let the person's AI use your app](https://sdk.docs.northlight.ai/docs/let-their-ai-use-your-app.md) | Define tools with `@north-light/plugin`, serve them, add the provider role, set a price |
-| [Services you can build on](https://sdk.docs.northlight.ai/docs/services.md) | Every listed app with a docs link |
 | [Manage your app](https://sdk.docs.northlight.ai/docs/guides/manage-your-app.md) | The console's **Profile** and **Provider** tabs |
 | [Go live](https://sdk.docs.northlight.ai/docs/guides/go-live.md) | Verification and the marketplace listing |
